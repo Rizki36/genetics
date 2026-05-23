@@ -222,9 +222,10 @@
                     <p class="mt-6 max-w-md text-white/65"> Lima segmen favorit Genetics jadi tolok ukur climbing,
                         konsistensi, dan keberanian untuk push lebih jauh. Pilih rute, kejar catatan, dan lihat siapa
                         yang naik leaderboard minggu ini. </p>
-                    <div id="feature-tabs" class="mt-10 space-y-3">
+                    <div id="feature-tabs"
+                        class="hide-scrollbar -mx-2 mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:block sm:space-y-3 sm:overflow-visible sm:px-0 sm:pb-0">
                         <button data-tab="jaya"
-                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/10 px-5 py-4 text-left transition hover:border-white/25">
+                            class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/10 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-xs uppercase tracking-[0.28em] text-white/45">01</p>
@@ -234,7 +235,7 @@
                             </div>
                         </button>
                         <button data-tab="jayaAlt"
-                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-xs uppercase tracking-[0.28em] text-white/45">02</p>
@@ -244,7 +245,7 @@
                             </div>
                         </button>
                         <button data-tab="kitiran"
-                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-xs uppercase tracking-[0.28em] text-white/45">03</p>
@@ -254,7 +255,7 @@
                             </div>
                         </button>
                         <button data-tab="tretes"
-                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-xs uppercase tracking-[0.28em] text-white/45">04</p>
@@ -264,7 +265,7 @@
                             </div>
                         </button>
                         <button data-tab="tretes3"
-                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-xs uppercase tracking-[0.28em] text-white/45">05</p>
@@ -747,6 +748,12 @@
                 featureCopy.textContent = data.copy;
                 featureImage.style.backgroundImage = `url('${data.image}')`;
                 featureLink.href = data.link;
+
+                button.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "start"
+                });
             });
         });
 
