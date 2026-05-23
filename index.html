@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genetics Run Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Teko:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coal: "#111111",
+                        ember: "#FF5A00",
+                        ash: "#B7B7B7",
+                        fog: "#1A1A1A",
+                        slatex: "#242424",
+                        soft: "#F5EFE9"
+                    },
+                    boxShadow: {
+                        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.35)",
+                        ember: "0 10px 40px rgba(255,90,0,0.35)"
+                    },
+                    backgroundImage: {
+                        noise:
+                            "radial-gradient(circle at 15% 20%, rgba(255,90,0,0.10), transparent 25%), radial-gradient(circle at 85% 10%, rgba(255,255,255,0.07), transparent 20%), radial-gradient(circle at 70% 80%, rgba(255,90,0,0.07), transparent 20%)"
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #111111;
+        }
+
+        .display-font {
+            font-family: "Teko", sans-serif;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 0.9;
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(to bottom, rgba(17, 17, 17, 0.60), rgba(17, 17, 17, 0.92)),
+                linear-gradient(120deg, rgba(255, 90, 0, 0.14), transparent 35%);
+        }
+
+        .soft-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+            backdrop-filter: blur(16px);
+        }
+
+        .event-thumb,
+        .coach-thumb,
+        .feature-thumb,
+        .banner-thumb {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .motion-blur {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motion-blur::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.10) 45%,
+                    transparent 60%);
+            transform: translateX(-120%);
+            animation: streak 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes streak {
+            to {
+                transform: translateX(120%);
+            }
+        }
+
+        .posterized {
+            filter: grayscale(100%) contrast(1.25) brightness(0.95);
+        }
+
+        .grid-fade {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 90%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 90%);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .modal-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-coal text-white selection:bg-ember selection:text-white">
+    <div class="fixed inset-0 -z-10 bg-noise opacity-80"></div>
+    <div class="fixed inset-0 -z-10 grid-fade opacity-30"></div>
+    <header class="fixed inset-x-0 top-0 z-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div
+                class="mt-4 flex items-center justify-between rounded-full border border-white/10 bg-black/40 px-5 py-3 shadow-glow backdrop-blur-xl">
+                <a href="#home" class="display-font text-3xl tracking-widest text-white">GENETICS</a>
+                <nav class="hidden items-center gap-8 text-sm font-medium text-white/70 lg:flex">
+                    <a href="#segments" class="transition hover:text-white">Segments</a>
+                    <a href="#events" class="transition hover:text-white">Events</a>
+                    <a href="#merchandise" class="transition hover:text-white">Merch</a>
+                    <a href="#socials" class="transition hover:text-white">Socials</a>
+                    <a href="#faq" class="transition hover:text-white">FAQ</a>
+                </nav>
+                <a href="#socials"
+                    class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-ember hover:text-white">
+                    JOIN US </a>
+            </div>
+        </div>
+    </header>
+    <main id="home">
+        <section class="relative min-h-screen overflow-hidden pt-28">
+            <div class="absolute inset-0 bg-cover bg-center"
+                style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80');">
+            </div>
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,90,0,0.14),transparent_35%)]"></div>
+            <div
+                class="relative mx-auto flex min-h-[calc(100vh-7rem)] max-w-7xl flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8">
+                <p class="mb-4 text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Run Recreational Repeat
+                </p>
+                <h1
+                    class="display-font max-w-5xl text-[4.5rem] leading-none sm:text-[6rem] md:text-[7.5rem] lg:text-[9rem]">
+                    RUNNING IS IN<br /> OUR <span class="text-ember">DNA.</span>
+                </h1>
+                <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+                    <a href="#socials"
+                        class="inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-black transition hover:scale-[1.02] hover:bg-ember hover:text-white">
+                        JOIN THE CREW <span
+                            class="flex h-8 w-8 items-center justify-center rounded-full bg-ember text-white">→</span>
+                    </a>
+                    <a href="#events"
+                        class="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm font-semibold text-white backdrop-blur transition hover:border-white/40 hover:bg-white/10">
+                        VIEW EVENTS </a>
+                </div>
+            </div>
+        </section>
+        <section id="segments" class="py-24 sm:py-28">
+            <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+                <div>
+                    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-ember">Strava Segments</p>
+                    <h2 class="display-font max-w-xl text-6xl sm:text-7xl"> CHASE THE<br /> KOMS </h2>
+                    <p class="mt-6 max-w-md text-white/65"> Lima segmen favorit Genetics jadi tolok ukur climbing,
+                        konsistensi, dan keberanian untuk push lebih jauh. Pilih rute, kejar catatan, dan lihat siapa
+                        yang naik leaderboard minggu ini. </p>
+                    <div id="feature-tabs" class="mt-10 space-y-3">
+                        <button data-tab="jaya"
+                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/10 px-5 py-4 text-left transition hover:border-white/25">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">01</p>
+                                    <p class="mt-1 text-lg font-semibold text-white">Jaya to Jaya</p>
+                                </div>
+                                <span class="text-xl text-ember">◷</span>
+                            </div>
+                        </button>
+                        <button data-tab="jayaAlt"
+                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">02</p>
+                                    <p class="mt-1 text-lg font-semibold text-white">Jaya to Jaya Alternative</p>
+                                </div>
+                                <span class="text-xl text-ember">◷</span>
+                            </div>
+                        </button>
+                        <button data-tab="kitiran"
+                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">03</p>
+                                    <p class="mt-1 text-lg font-semibold text-white">Kitiran Loop</p>
+                                </div>
+                                <span class="text-xl text-ember">◷</span>
+                            </div>
+                        </button>
+                        <button data-tab="tretes"
+                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">04</p>
+                                    <p class="mt-1 text-lg font-semibold text-white">Waterfall Tretes Loop</p>
+                                </div>
+                                <span class="text-xl text-ember">◷</span>
+                            </div>
+                        </button>
+                        <button data-tab="tretes3"
+                            class="feature-tab w-full rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">05</p>
+                                    <p class="mt-1 text-lg font-semibold text-white">Waterfall Tretes 3 Loop</p>
+                                </div>
+                                <span class="text-xl text-ember">◷</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -left-6 top-8 hidden h-48 w-48 rounded-full bg-ember/20 blur-3xl lg:block">
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-4 pb-8 shadow-glow">
+                        <div id="feature-image" class="feature-thumb motion-blur h-[28rem] rounded-[1.5rem]"
+                            style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');">
+                        </div>
+                        <div class="mt-6 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
+                            <div>
+                                <p id="feature-kicker"
+                                    class="text-sm font-semibold uppercase tracking-[0.35em] text-ember">Featured
+                                    Segment </p>
+                                <h3 id="feature-title" class="mt-2 text-3xl font-bold text-white">Jaya to Jaya jadi
+                                    benchmark road pembuka untuk ritme, kontrol tenaga, dan konsistensi pace.</h3>
+                                <p id="feature-copy" class="mt-3 max-w-xl text-white/65"> Rute aspal ini dipakai member
+                                    Genetics untuk mengukur start yang rapi, transisi effort yang stabil, dan disiplin
+                                    pace sampai finis. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="events" class="py-24 sm:py-28">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-ember">Calendar</p>
+                        <h2 class="display-font mt-3 text-6xl sm:text-7xl">LATEST EVENTS</h2>
+                    </div>
+                    <a href="#next-event"
+                        class="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold transition hover:bg-white/10">
+                        VIEW ALL EVENTS </a>
+                </div>
+                <div class="space-y-5">
+                    <article
+                        class="group grid items-center gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08] md:grid-cols-[90px_220px_1fr_auto]">
+                        <div class="display-font text-6xl text-white/35">01</div>
+                        <div class="event-thumb h-32 rounded-[1.25rem] grayscale"
+                            style="background-image: url('https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=900&q=80');">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Social Paces - Genetics x Tomoro Coffee</h3>
+                            <p class="mt-2 max-w-2xl text-white/65">Social run dengan pace santai, coffee stop, dan sesi
+                                ngobrol setelah finish bareng komunitas.</p>
+                        </div>
+                        <button
+                            class="h-14 w-14 rounded-full bg-ember text-2xl text-white shadow-ember transition group-hover:scale-105">→</button>
+                    </article>
+                    <article
+                        class="group grid items-center gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08] md:grid-cols-[90px_220px_1fr_auto]">
+                        <div class="display-font text-6xl text-white/35">02</div>
+                        <div class="event-thumb h-32 rounded-[1.25rem] grayscale"
+                            style="background-image: url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80');">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Lost in Wonosalam - Genetics x Sumber Wadhe</h3>
+                            <p class="mt-2 max-w-2xl text-white/65">Road session eksploratif di Wonosalam dengan rute
+                                scenic, tempo yang terjaga, dan pit stop komunitas setelah finish.</p>
+                        </div>
+                        <button
+                            class="h-14 w-14 rounded-full bg-ember text-2xl text-white shadow-ember transition group-hover:scale-105">→</button>
+                    </article>
+                    <article
+                        class="group grid items-center gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/[0.08] md:grid-cols-[90px_220px_1fr_auto]">
+                        <div class="display-font text-6xl text-white/35">03</div>
+                        <div class="event-thumb h-32 rounded-[1.25rem] grayscale"
+                            style="background-image: url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80');">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Ramadhan Unity - Genetics x Dogel Coffee</h3>
+                            <p class="mt-2 max-w-2xl text-white/65">Gathering Ramadhan dengan road run progresif dan
+                                coffee hangout untuk menjaga koneksi komunitas tetap kuat.</p>
+                        </div>
+                        <button
+                            class="h-14 w-14 rounded-full bg-ember text-2xl text-white shadow-ember transition group-hover:scale-105">→</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="next-event" class="py-24 sm:py-28">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div
+                    class="overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/8 to-white/4 shadow-glow">
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
+                        <div class="relative min-h-[26rem] p-5 sm:p-8">
+                            <div class="banner-thumb motion-blur h-full min-h-[24rem] rounded-[2rem]"
+                                style="background-image: linear-gradient(to bottom, rgba(17,17,17,0.15), rgba(17,17,17,0.55)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');">
+                            </div>
+                            <div
+                                class="absolute left-10 top-10 max-w-md rounded-[1.75rem] bg-white p-6 text-black shadow-2xl">
+                                <p class="text-xs font-semibold uppercase tracking-[0.32em] text-black/45">Upcoming
+                                    Event</p>
+                                <h3 class="mt-2 display-font text-5xl leading-none text-black">TRETES WATERFALL</h3>
+                                <p class="mt-3 text-sm text-black/65">August 2026 • Genetics Trail Series</p>
+                                <div class="mt-6 grid grid-cols-3 gap-3">
+                                    <div class="rounded-2xl bg-[#FFD3BF] p-4 text-center">
+                                        <p class="text-xl font-extrabold">AUG</p>
+                                        <p class="mt-1 text-xs uppercase tracking-[0.25em] text-black/55">Month</p>
+                                    </div>
+                                    <div class="rounded-2xl bg-[#FFD3BF] p-4 text-center">
+                                        <p class="text-xl font-extrabold">25KM</p>
+                                        <p class="mt-1 text-xs uppercase tracking-[0.25em] text-black/55">Distance</p>
+                                    </div>
+                                    <div class="rounded-2xl bg-[#FFD3BF] p-4 text-center">
+                                        <p class="text-xl font-extrabold">1300M+</p>
+                                        <p class="mt-1 text-xs uppercase tracking-[0.25em] text-black/55">Elevation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-8 sm:p-10 lg:p-14">
+                            <div class="max-w-xl">
+                                <p class="text-sm font-semibold uppercase tracking-[0.35em] text-ember">Next Event</p>
+                                <h2 class="display-font mt-4 text-6xl sm:text-7xl"> WATERFALL<br /> TRETES 3 LOOP </h2>
+                                <p class="mt-5 text-white/70"> Upcoming in August 2026 sebagai bagian dari Genetics
+                                    Trail Series. Format rute 25 km dengan elevasi 1300 m dirancang untuk runner yang
+                                    siap naik level di medan trail. </p>
+                                <a href="#socials"
+                                    class="mt-8 inline-flex items-center gap-3 rounded-full bg-ember px-7 py-4 text-sm font-semibold text-white shadow-ember transition hover:scale-[1.02]">
+                                    REGISTER NOW <span class="text-lg">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="merchandise" class="py-24 sm:py-28">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mb-10 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-end">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-ember">Merchandise</p>
+                        <h2 class="display-font mt-3 text-6xl sm:text-7xl">WEAR THE<br /> PACE</h2>
+                    </div>
+                    <p class="max-w-xl text-white/65">Drop pilihan untuk sebelum start, setelah finish, dan semua momen
+                        di antaranya. Potongan dibuat untuk lari kota, recovery coffee, dan identitas Genetics yang
+                        tetap tajam di luar race day.</p>
+                </div>
+                <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+                    <article
+                        class="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-5 shadow-glow">
+                        <div class="grid gap-6">
+                            <button type="button"
+                                class="banner-thumb min-h-[28rem] w-full rounded-[2rem] text-left transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-ember/70"
+                                data-merch-preview="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80"
+                                data-merch-title="ABNORMAL JERSEY" aria-label="Preview Abnormal Jersey"
+                                style="background-image: linear-gradient(to bottom, rgba(17,17,17,0.18), rgba(17,17,17,0.55)), url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80');">
+                            </button>
+                            <div
+                                class="flex flex-col justify-between rounded-[2rem] border border-white/10 bg-black/30 gap-3 p-6">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">Featured Drop</p>
+                                    <h3 class="mt-3 text-4xl font-extrabold uppercase">ABNORMAL JERSEY</h3>
+                                    <p class="mt-4 text-white/65">Jersey statement untuk race day dan long trail effort
+                                        dengan fit tegas, material ringan, dan identitas Genetics yang berani.</p>
+                                </div>
+                                <div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm text-white/75">
+                                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                            <p class="text-xs uppercase tracking-[0.24em] text-white/45">Fabric</p>
+                                            <p class="mt-2 text-lg font-semibold text-white">Race Knit</p>
+                                        </div>
+                                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                            <p class="text-xs uppercase tracking-[0.24em] text-white/45">Price</p>
+                                            <p class="mt-2 text-lg font-semibold text-white">549K</p>
+                                        </div>
+                                    </div>
+                                    <span aria-disabled="true"
+                                        class="mt-6 inline-flex cursor-not-allowed items-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-4 text-sm font-semibold text-white/40 opacity-70">
+                                        SOLD <span class="text-lg text-white/30">•</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+                        <article class="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-glow">
+                            <button type="button"
+                                class="event-thumb h-56 w-full rounded-[1.5rem] text-left transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-ember/70"
+                                data-merch-preview="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80"
+                                data-merch-title="TRAIL OF RESISTANCE T-SHIRT"
+                                aria-label="Preview Trail of Resistance T-shirt"
+                                style="background-image: linear-gradient(to bottom, rgba(17,17,17,0.08), rgba(17,17,17,0.35)), url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80');">
+                            </button>
+                            <div class="mt-5 flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">Graphic Drop</p>
+                                    <h3 class="mt-2 text-2xl font-bold text-white">Trail of Resistance T-shirt</h3>
+                                </div>
+                                <span
+                                    class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-semibold text-white">329K</span>
+                            </div>
+                            <p class="mt-3 text-sm text-white/65">Kaos grafis untuk recovery day, coffee stop, dan
+                                identitas trail runner Genetics di luar race course.</p>
+                        </article>
+                        <article class="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-glow">
+                            <button type="button"
+                                class="event-thumb h-56 w-full rounded-[1.5rem] text-left transition hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-ember/70"
+                                data-merch-preview="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=80"
+                                data-merch-title="RUN RECREATIONAL REPEAT JERSEY"
+                                aria-label="Preview Run Recreational Repeat Jersey"
+                                style="background-image: linear-gradient(to bottom, rgba(17,17,17,0.08), rgba(17,17,17,0.35)), url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80');">
+                            </button>
+                            <div class="mt-5 flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-xs uppercase tracking-[0.28em] text-white/45">Crew Favorite</p>
+                                    <h3 class="mt-2 text-2xl font-bold text-white">Run Recreational Repeat Jersey</h3>
+                                </div>
+                                <span
+                                    class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-semibold text-white">189K</span>
+                            </div>
+                            <p class="mt-3 text-sm text-white/65">Jersey serbaguna buat social pace, latihan mingguan,
+                                dan event komunitas dengan tampilan Genetics yang lebih playful.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="merchPreviewModal"
+            class="pointer-events-none fixed inset-0 z-[60] flex items-center justify-center bg-black/80 px-4 opacity-0 transition duration-300"
+            role="dialog" aria-modal="true" aria-hidden="true" hidden>
+            <div class="absolute inset-0" data-close-merch-preview></div>
+            <div id="merchPreviewPanel"
+                class="relative w-full max-w-4xl translate-y-6 overflow-hidden rounded-[2rem] border border-white/10 bg-[#0f0f0f] shadow-glow transition duration-300">
+                <button type="button"
+                    class="absolute right-4 top-4 z-10 rounded-full border border-white/15 bg-black/60 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+                    data-close-merch-preview> CLOSE </button>
+                <div class="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+                    <div id="merchPreviewImage" class="min-h-[24rem] bg-cover bg-center sm:min-h-[34rem]"></div>
+                    <div class="flex flex-col justify-end bg-gradient-to-b from-white/8 to-white/4 p-6 sm:p-8">
+                        <p class="text-xs font-semibold uppercase tracking-[0.35em] text-ember">Image Preview</p>
+                        <h3 id="merchPreviewTitle" class="display-font mt-4 text-5xl sm:text-6xl">ABNORMAL JERSEY </h3>
+                        <p class="mt-4 max-w-md text-sm leading-7 text-white/65">Lihat detail visual merchandise
+                            Genetics dalam frame yang lebih besar sebelum lanjut ke drop berikutnya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="faq" class="py-24 sm:py-28">
+            <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sm font-semibold uppercase tracking-[0.35em] text-ember">FAQ</p>
+                <h2 class="display-font mt-3 text-center text-6xl sm:text-7xl">FREQUENTLY ASKED QUESTIONS</h2>
+                <div class="mt-12 space-y-4">
+                    <div class="faq-item rounded-[1.75rem] border border-white/10 bg-white/5">
+                        <button class="faq-trigger flex w-full items-center justify-between px-6 py-5 text-left">
+                            <span class="text-lg font-semibold">Apakah Genetics cocok untuk pemula?</span>
+                            <span class="faq-icon text-2xl text-ember">+</span>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-white/65"> Ya. Kami punya pace group dan struktur
+                            latihan yang disesuaikan dari level beginner sampai performance runner. </div>
+                    </div>
+                    <div class="faq-item rounded-[1.75rem] border border-white/10 bg-white/5">
+                        <button class="faq-trigger flex w-full items-center justify-between px-6 py-5 text-left">
+                            <span class="text-lg font-semibold">Lokasi lari biasanya di mana?</span>
+                            <span class="faq-icon text-2xl text-ember">+</span>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-white/65"> Mayoritas sesi di area Jombang dengan
+                            titik kumpul Jaya Raya. </div>
+                    </div>
+                    <div class="faq-item rounded-[1.75rem] border border-white/10 bg-white/5">
+                        <button class="faq-trigger flex w-full items-center justify-between px-6 py-5 text-left">
+                            <span class="text-lg font-semibold">Apa yang membedakan Genetics dari run club lain?</span>
+                            <span class="faq-icon text-2xl text-ember">+</span>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-white/65"> Fokus kami ada pada performa, identitas
+                            visual yang kuat, dan kultur yang benar-benar menjaga solidaritas antar anggota. </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="socials" class="pb-20 pt-10 sm:pb-28">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="relative overflow-hidden rounded-[2.5rem] border border-white/10">
+                    <div class="absolute inset-0 bg-cover bg-center"
+                        style="background-image: linear-gradient(to right, rgba(17,17,17,0.84), rgba(17,17,17,0.58)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');">
+                    </div>
+                    <div class="relative px-6 py-16 text-center sm:px-10 sm:py-20">
+                        <p class="text-sm font-semibold uppercase tracking-[0.35em] text-ember">Social Media</p>
+                        <h2 class="display-font mx-auto mt-4 max-w-4xl text-5xl sm:text-7xl"> STAY IN THE LOOP<br /> OFF
+                            THE TRACK </h2>
+                        <p class="mx-auto mt-5 max-w-2xl text-white/70"> Ikuti Genetics di platform utama untuk route
+                            drop, update event, leaderboard Strava, dan recap sesi paling kencang minggu ini. </p>
+                        <div
+                            class="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 text-left sm:grid-cols-2 xl:grid-cols-4">
+                            <a href="#"
+                                class="soft-card rounded-[1.75rem] border border-white/10 p-6 transition hover:border-white/25 hover:bg-white/10">
+                                <p class="text-xs uppercase tracking-[0.3em] text-white/45">Instagram</p>
+                                <h3 class="mt-3 text-2xl font-bold text-white">@genetics.run</h3>
+                                <p class="mt-3 text-sm text-white/65">Visual recap, schedule drop, dan photo dump dari
+                                    setiap session.</p>
+                            </a>
+                            <a href="#"
+                                class="soft-card rounded-[1.75rem] border border-white/10 p-6 transition hover:border-white/25 hover:bg-white/10">
+                                <p class="text-xs uppercase tracking-[0.3em] text-white/45">Strava Club</p>
+                                <h3 class="mt-3 text-2xl font-bold text-white">Genetics RC</h3>
+                                <p class="mt-3 text-sm text-white/65">Leaderboard mingguan, hasil segment, dan challenge
+                                    yang selalu bergerak.</p>
+                            </a>
+                            <a href="#"
+                                class="soft-card rounded-[1.75rem] border border-white/10 p-6 transition hover:border-white/25 hover:bg-white/10">
+                                <p class="text-xs uppercase tracking-[0.3em] text-white/45">TikTok</p>
+                                <h3 class="mt-3 text-2xl font-bold text-white">@genetics.pace</h3>
+                                <p class="mt-3 text-sm text-white/65">Short-form session recap, form drill, dan energy
+                                    clip dari night runs.</p>
+                            </a>
+                            <a href="#"
+                                class="soft-card rounded-[1.75rem] border border-white/10 p-6 transition hover:border-white/25 hover:bg-white/10">
+                                <p class="text-xs uppercase tracking-[0.3em] text-white/45">WhatsApp</p>
+                                <h3 class="mt-3 text-2xl font-bold text-white">Genetics Run Club</h3>
+                                <p class="mt-3 text-sm text-white/65">Info join crew, update event, dan koordinasi pace
+                                    group langsung dari kanal komunitas utama.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="border-t border-white/10 py-10">
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 md:grid-cols-[1.2fr_0.8fr] lg:px-8">
+            <div>
+                <h3 class="display-font text-4xl text-white">GENETICS RUN CLUB</h3>
+                <p class="mt-4 max-w-md text-white/60"> Urban run collective dengan semangat premium, progres nyata, dan
+                    kebersamaan yang terasa di setiap kilometer. </p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <a href="#"
+                        class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/75 transition hover:bg-white/10">IG</a>
+                    <a href="#"
+                        class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/75 transition hover:bg-white/10">X</a>
+                    <a href="#"
+                        class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/75 transition hover:bg-white/10">WhatsApp</a>
+                    <a href="#"
+                        class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/75 transition hover:bg-white/10">Strava</a>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-6 text-sm">
+                <div class="space-y-3">
+                    <a href="#segments" class="block text-white/70 transition hover:text-white">Segments</a>
+                    <a href="#events" class="block text-white/70 transition hover:text-white">Events</a>
+                    <a href="#merchandise" class="block text-white/70 transition hover:text-white">Merch</a>
+                    <a href="#socials" class="block text-white/70 transition hover:text-white">Socials</a>
+                    <a href="#faq" class="block text-white/70 transition hover:text-white">FAQ</a>
+                </div>
+                <div class="space-y-3 text-white/50 md:text-right">
+                    <p>Jombang, Indonesia</p>
+                    <p>© 2026 Genetics Run Club</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const featureData = {
+            jaya: {
+                kicker: "Featured Segment",
+                title: "Jaya to Jaya jadi benchmark road pembuka untuk ritme, kontrol tenaga, dan konsistensi pace.",
+                copy:
+                    "Rute aspal ini dipakai member Genetics untuk mengukur start yang rapi, transisi effort yang stabil, dan disiplin pace sampai finis.",
+                image:
+                    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+            },
+            jayaAlt: {
+                kicker: "Alternative Route",
+                title: "Jaya to Jaya Alternative memberi opsi road route dengan ritme yang lebih berubah-ubah.",
+                copy:
+                    "Variasi aspal ini cocok buat runner yang ingin mainkan strategi, adaptasi kontur jalan, dan tetap menjaga output sepanjang segmen.",
+                image:
+                    "https://images.unsplash.com/photo-1501554728187-ce583db33af7?auto=format&fit=crop&w=1200&q=80"
+            },
+            kitiran: {
+                kicker: "Loop Favorite",
+                title: "Kitiran Loop dipakai untuk membangun konsistensi langkah di loop road yang panjang.",
+                copy:
+                    "Karakter jalan yang stabil membuatnya pas untuk repeat effort, latihan ketahanan, dan evaluasi pacing dari lap ke lap.",
+                image:
+                    "https://images.unsplash.com/photo-1456613820599-bfe244172af5?auto=format&fit=crop&w=1200&q=80"
+            },
+            tretes: {
+                kicker: "Waterfall Route",
+                title: "Waterfall Tretes Loop menonjolkan kombinasi climbing, flow descent, dan visual alam yang kuat.",
+                copy:
+                    "Segmen ini jadi favorit untuk runner yang ingin merasakan ritme trail penuh tanpa kehilangan momentum di setiap transisi medan.",
+                image:
+                    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80"
+            },
+            tretes3: {
+                kicker: "Trail Series Highlight",
+                title: "Waterfall Tretes 3 Loop adalah ujian penuh untuk daya tahan, kontrol effort, dan mental bertahan.",
+                copy:
+                    "Format tiga loop memberi tekanan progresif yang ideal untuk persiapan race trail dan simulasi medan event utama Genetics.",
+                image:
+                    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80"
+            }
+        };
+
+        const featureButtons = document.querySelectorAll(".feature-tab");
+        const featureKicker = document.getElementById("feature-kicker");
+        const featureTitle = document.getElementById("feature-title");
+        const featureCopy = document.getElementById("feature-copy");
+        const featureImage = document.getElementById("feature-image");
+        const merchPreviewTriggers = document.querySelectorAll("[data-merch-preview]");
+        const merchPreviewModal = document.getElementById("merchPreviewModal");
+        const merchPreviewPanel = document.getElementById("merchPreviewPanel");
+        const merchPreviewImage = document.getElementById("merchPreviewImage");
+        const merchPreviewTitle = document.getElementById("merchPreviewTitle");
+        const merchPreviewClosers = document.querySelectorAll("[data-close-merch-preview]");
+        let merchPreviewHideTimer;
+
+        function openMerchPreview(image, title) {
+            clearTimeout(merchPreviewHideTimer);
+            merchPreviewImage.style.backgroundImage = `linear-gradient(to bottom, rgba(17,17,17,0.12), rgba(17,17,17,0.38)), url('${image}')`;
+            merchPreviewTitle.textContent = title;
+            merchPreviewModal.hidden = false;
+            merchPreviewPanel.classList.add("translate-y-6");
+            merchPreviewModal.classList.remove("pointer-events-none", "opacity-0");
+            merchPreviewModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+            requestAnimationFrame(() => {
+                merchPreviewPanel.classList.remove("translate-y-6");
+            });
+        }
+
+        function closeMerchPreview() {
+            merchPreviewModal.classList.add("pointer-events-none", "opacity-0");
+            merchPreviewModal.setAttribute("aria-hidden", "true");
+            merchPreviewPanel.classList.add("translate-y-6");
+            document.body.classList.remove("modal-open");
+            merchPreviewHideTimer = setTimeout(() => {
+                if (merchPreviewModal.getAttribute("aria-hidden") === "true") {
+                    merchPreviewModal.hidden = true;
+                }
+            }, 300);
+        }
+
+        featureButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const key = button.dataset.tab;
+                const data = featureData[key];
+
+                featureButtons.forEach((item) => {
+                    item.classList.remove("bg-white/10");
+                    item.classList.add("bg-white/5");
+                });
+
+                button.classList.remove("bg-white/5");
+                button.classList.add("bg-white/10");
+
+                featureKicker.textContent = data.kicker;
+                featureTitle.textContent = data.title;
+                featureCopy.textContent = data.copy;
+                featureImage.style.backgroundImage = `url('${data.image}')`;
+            });
+        });
+
+        merchPreviewTriggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                openMerchPreview(trigger.dataset.merchPreview, trigger.dataset.merchTitle);
+            });
+        });
+
+        merchPreviewClosers.forEach((closer) => {
+            closer.addEventListener("click", closeMerchPreview);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !merchPreviewModal.classList.contains("pointer-events-none")) {
+                closeMerchPreview();
+            }
+        });
+
+        function scrollCoach(direction) {
+            const row = document.getElementById("coachRow");
+            row.scrollBy({
+                left: direction * 340,
+                behavior: "smooth"
+            });
+        }
+
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+            const trigger = item.querySelector(".faq-trigger");
+            const content = item.querySelector(".faq-content");
+            const icon = item.querySelector(".faq-icon");
+
+            trigger.addEventListener("click", () => {
+                const isHidden = content.classList.contains("hidden");
+
+                faqItems.forEach((otherItem) => {
+                    otherItem.querySelector(".faq-content").classList.add("hidden");
+                    otherItem.querySelector(".faq-icon").textContent = "+";
+                });
+
+                if (isHidden) {
+                    content.classList.remove("hidden");
+                    icon.textContent = "−";
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
