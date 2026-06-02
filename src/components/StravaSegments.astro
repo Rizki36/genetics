@@ -1,0 +1,147 @@
+<section id="segments" class="py-12">
+  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+    <div>
+      <p class="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-ember">Strava Segments</p>
+      <h2 class="display-font max-w-xl text-6xl sm:text-7xl"> CHASE THE<br /> KOMS </h2>
+      <p class="mt-6 max-w-md text-white/65"> Lima segmen favorit Genetics jadi tolok ukur climbing, konsistensi, dan keberanian untuk push lebih jauh. Pilih rute, kejar catatan, dan lihat siapa yang naik leaderboard minggu ini. </p>
+      <div id="feature-tabs" class="hide-scrollbar -mx-2 mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:block sm:space-y-3 sm:overflow-visible sm:px-0 sm:pb-0">
+        <button data-tab="jaya" class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/10 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.28em] text-white/45">01</p>
+              <p class="mt-1 text-lg font-semibold text-white">Jaya to Jaya</p>
+            </div>
+            <span class="text-xl text-ember">&#x25F7;</span>
+          </div>
+        </button>
+        <button data-tab="jayaAlt" class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.28em] text-white/45">02</p>
+              <p class="mt-1 text-lg font-semibold text-white">Jaya to Jaya Alternative</p>
+            </div>
+            <span class="text-xl text-ember">&#x25F7;</span>
+          </div>
+        </button>
+        <button data-tab="kitiran" class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.28em] text-white/45">03</p>
+              <p class="mt-1 text-lg font-semibold text-white">Kitiran Loop</p>
+            </div>
+            <span class="text-xl text-ember">&#x25F7;</span>
+          </div>
+        </button>
+        <button data-tab="tretes" class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.28em] text-white/45">04</p>
+              <p class="mt-1 text-lg font-semibold text-white">Waterfall Tretes Loop</p>
+            </div>
+            <span class="text-xl text-ember">&#x25F7;</span>
+          </div>
+        </button>
+        <button data-tab="tretes3" class="feature-tab w-[82vw] max-w-[20rem] shrink-0 snap-start rounded-3xl border border-white/10 bg-white/5 px-5 py-4 text-left transition hover:border-white/25 sm:w-full sm:max-w-none sm:min-w-0">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-[0.28em] text-white/45">05</p>
+              <p class="mt-1 text-lg font-semibold text-white">Waterfall Tretes 3 Loop</p>
+            </div>
+            <span class="text-xl text-ember">&#x25F7;</span>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="absolute -left-6 top-8 hidden h-48 w-48 rounded-full bg-ember/20 blur-3xl lg:block"></div>
+      <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-4 pb-8 shadow-glow">
+        <div id="feature-image" class="feature-thumb motion-blur h-[28rem] rounded-[1.5rem]" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80');">
+        </div>
+        <div class="mt-6 grid gap-4">
+          <div>
+            <p id="feature-kicker" class="text-sm font-semibold uppercase tracking-[0.35em] text-ember">Featured Segment</p>
+            <h3 id="feature-title" class="mt-2 text-3xl font-bold text-white">Jaya to Jaya jadi benchmark road pembuka untuk ritme, kontrol tenaga, dan konsistensi pace.</h3>
+            <p id="feature-copy" class="mt-3 max-w-xl text-white/65"> Rute aspal ini dipakai member Genetics untuk mengukur start yang rapi, transisi effort yang stabil, dan disiplin pace sampai finis. </p>
+          </div>
+          <a id="feature-link" href="https://strava.app.link/g3Xqipzwn3b" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10">
+            OPEN SEGMENT <span class="text-lg text-ember">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const featureData = {
+    jaya: {
+      kicker: "Featured Segment",
+      title: "Jaya to Jaya jadi benchmark road pembuka untuk ritme, kontrol tenaga, dan konsistensi pace.",
+      copy: "Rute aspal ini dipakai member Genetics untuk mengukur start yang rapi, transisi effort yang stabil, dan disiplin pace sampai finis.",
+      image: "https://images.unsplash.com/photo-1635479551200-da8d99e3eaf7?auto=format&fit=crop&w=1200&q=80",
+      link: "https://strava.app.link/g3Xqipzwn3b"
+    },
+    jayaAlt: {
+      kicker: "Alternative Route",
+      title: "Jaya to Jaya Alternative memberi opsi road route dengan ritme yang lebih berubah-ubah.",
+      copy: "Variasi aspal ini cocok buat runner yang ingin mainkan strategi, adaptasi kontur jalan, dan tetap menjaga output sepanjang segmen.",
+      image: "https://images.unsplash.com/photo-1635479551200-da8d99e3eaf7?auto=format&fit=crop&w=1200&q=80",
+      link: "https://strava.app.link/qT2r31Awn3b"
+    },
+    kitiran: {
+      kicker: "Road Elevation",
+      title: "Kitiran Loop dipakai untuk membangun konsistensi langkah di loop road yang panjang.",
+      copy: "Karakter jalan yang naik turun ini ideal untuk latihan pacing, kontrol effort, dan adaptasi ritme.",
+      image: "https://images.unsplash.com/photo-1691782937092-383feedaa5c7?auto=format&fit=crop&w=1200&q=80",
+      link: "https://strava.app.link/kpfTVIDwn3b"
+    },
+    tretes: {
+      kicker: "Waterfall Route",
+      title: "Waterfall Tretes Loop menonjolkan kombinasi climbing, flow descent, dan visual alam yang kuat.",
+      copy: "Segmen ini jadi favorit untuk runner yang ingin merasakan ritme trail penuh tanpa kehilangan momentum di setiap transisi medan.",
+      image: "https://images.unsplash.com/photo-1596035023839-594b88b52b8d?auto=format&fit=crop&w=1200&q=80",
+      link: "https://strava.app.link/I5ohHbFwn3b"
+    },
+    tretes3: {
+      kicker: "Waterfall Route",
+      title: "Waterfall Tretes 3 Loop adalah ujian penuh untuk daya tahan, kontrol effort, dan mental bertahan.",
+      copy: "Format tiga loop memberi tekanan progresif yang ideal untuk persiapan race trail dan simulasi medan event utama Genetics.",
+      image: "https://images.unsplash.com/photo-1596035023839-594b88b52b8d?auto=format&fit=crop&w=1200&q=80",
+      link: "https://strava.app.link/mh9jIBGwn3b"
+    }
+  };
+
+  const featureButtons = document.querySelectorAll(".feature-tab");
+  const featureKicker = document.getElementById("feature-kicker");
+  const featureTitle = document.getElementById("feature-title");
+  const featureCopy = document.getElementById("feature-copy");
+  const featureImage = document.getElementById("feature-image");
+  const featureLink = document.getElementById("feature-link");
+
+  featureButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.dataset.tab;
+      const data = featureData[key];
+
+      featureButtons.forEach((item) => {
+        item.classList.remove("bg-white/10");
+        item.classList.add("bg-white/5");
+      });
+
+      button.classList.remove("bg-white/5");
+      button.classList.add("bg-white/10");
+
+      featureKicker.textContent = data.kicker;
+      featureTitle.textContent = data.title;
+      featureCopy.textContent = data.copy;
+      featureImage.style.backgroundImage = `url('${data.image}')`;
+      featureLink.href = data.link;
+
+      button.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start"
+      });
+    });
+  });
+</script>
