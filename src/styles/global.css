@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-coal: #111111;
+  --color-ember: #22C55E;
+  --color-ash: #B7B7B7;
+  --color-fog: #1A1A1A;
+  --color-slatex: #242424;
+  --color-soft: #F5EFE9;
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 60px rgba(0, 0, 0, 0.35);
+  --shadow-ember: 0 10px 40px rgba(34, 197, 94, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #111111;
+}
+
+.display-font {
+  font-family: "Teko", sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(17, 17, 17, 0.60), rgba(17, 17, 17, 0.92)),
+    linear-gradient(120deg, rgba(34, 197, 94, 0.14), transparent 35%);
+}
+
+.soft-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  backdrop-filter: blur(16px);
+}
+
+.event-thumb,
+.coach-thumb,
+.feature-thumb,
+.banner-thumb {
+  background-size: cover;
+  background-position: center;
+}
+
+.motion-blur {
+  position: relative;
+  overflow: hidden;
+}
+
+.motion-blur::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.10) 45%, transparent 60%);
+  transform: translateX(-120%);
+  animation: streak 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes streak {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+.posterized {
+  filter: grayscale(100%) contrast(1.25) brightness(0.95);
+}
+
+.grid-fade {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 90%);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.bg-noise {
+  background-image: radial-gradient(circle at 15% 20%, rgba(34, 197, 94, 0.10), transparent 25%),
+    radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.07), transparent 20%),
+    radial-gradient(circle at 70% 80%, rgba(34, 197, 94, 0.07), transparent 20%);
+}
